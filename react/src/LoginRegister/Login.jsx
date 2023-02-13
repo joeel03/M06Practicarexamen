@@ -1,11 +1,13 @@
 import React from 'react'
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     let [email, setEmail] = useState("");
-  let [password, setPassword] = useState("");
-  let [error, setError] = useState("");
-
+    let [password, setPassword] = useState("");
+    let [error, setError] = useState("");
+    let navigate = useNavigate();
+  
     const sendLogin = async (e) => {
         e.preventDefault();
         try {
@@ -14,13 +16,13 @@ const Login = () => {
             Accept: "application/json",
             "Content-Type": "application/json"
           },
-          method: "GET",
+          method: "GET"
           });
-          const resposta = await data.json();
-
-            console.log(resposta)
-          
-         
+            const resposta = await data.json();
+            console.log(resposta[0].email)
+            if(resposta[0].email==email){
+              navigate("/todoslist")
+            }
         } catch{
             console.log("Error");
             alert("Catchch");
