@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from '../userContext';
 import { useContext } from 'react';
 const Login = () => {
-  let { userId, setUserId } = useContext(UserContext);
+  let { idUser, setIdUser } = useContext(UserContext);
     let [email, setEmail] = useState("");
     let [password, setPassword] = useState("");
     let [error, setError] = useState("");
@@ -23,9 +23,12 @@ const Login = () => {
             const resposta = await data.json();
             console.log(resposta[0])
             if(resposta[0].email==email){
-              setUserId(resposta[0].id)
+              setIdUser(resposta[0].id)
+              console.log(idUser)
+
               navigate("/todoslist")
             }
+
         } catch(err){
             console.log(err.message);
             alert("Catchch");

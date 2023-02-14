@@ -5,11 +5,13 @@ import { useContext } from "react";
 import { UserContext } from "./userContext";
 
 const TodosAdd = () => {
+  let { idUser, setIdUser } = useContext(UserContext);
+  console.log(idUser)
   let [formulari, setFormulari] = useState({});
   let navigate = useNavigate();
   
 
-  let { title, completed,userId=1 } = formulari;
+  let { title, completed,userId=idUser } = formulari;
   const formData = new FormData;
   formData.append("userId", userId);
 
@@ -41,7 +43,7 @@ const TodosAdd = () => {
         
         console.log(resposta)
         console.log("place creado")
-        navigate("/todo/"+resposta.id)
+        navigate("/todos/"+resposta.id)
      
       
     } catch(err) {

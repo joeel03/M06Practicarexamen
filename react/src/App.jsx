@@ -11,13 +11,12 @@ import { UserContext } from "./userContext";
 
 
 function App() {
-  let [userId, setUserId] = useState("");
+  let [idUser, setIdUser] = useState("");
 
   return (
-    <UserContext.Provider value={{ userId, setUserId}}>
+    <UserContext.Provider value={{ idUser, setIdUser}}>
       <Routes>
       <Route path="/" element={<LoginRegister/>} />
-
       <Route path="/todoslist" element={<TodosList/>} />
       <Route path="/todosadd" element={<TodosAdd/>} />
       <Route path="/todos/:id" element={<Todos/>} />
