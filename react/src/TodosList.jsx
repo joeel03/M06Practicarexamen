@@ -2,7 +2,7 @@ import React from 'react'
 import TodoList from './TodoList'
 import { useState, useEffect } from 'react';
 import { useContext } from "react";
-import { UserContext } from "./userContext";
+import { UserContext } from "./UserContext";
 import { Link } from 'react-router-dom';
 
 const TodosList = () => {
@@ -37,6 +37,9 @@ console.log(idUser)
        
         <div>
         <h1>todo List</h1>
+        <div className="menu">
+        <Link className='click blue' to="/todosadd">Afegir Entrada</Link>
+        </div>
         <table>
             <tr>
                 <th>UserId</th>
@@ -53,9 +56,7 @@ console.log(idUser)
                     
             ))}
         </table>
-        <div className="menu">
-        <Link className='click blue' to="/todosadd">Afegir Entrada</Link>
-        </div>
+        
     </div>
   )
 }

@@ -1,10 +1,10 @@
 import React from 'react'
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from '../userContext';
+import { UserContext } from '../UserContext';
 import { useContext } from 'react';
 const Login = () => {
-  let { idUser, setIdUser } = useContext(UserContext);
+    let { idUser, setIdUser } = useContext(UserContext);
     let [email, setEmail] = useState("");
     let [password, setPassword] = useState("");
     let [error, setError] = useState("");

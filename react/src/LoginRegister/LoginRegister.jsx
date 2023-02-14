@@ -2,6 +2,8 @@ import { useState } from 'react'
 import React from 'react'
 import Login from './Login'
 import Register from './Register'
+import { useContext } from 'react'
+import { UserContext } from "../UserContext";
 
 
 

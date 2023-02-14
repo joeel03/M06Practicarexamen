@@ -1,6 +1,6 @@
 import React from 'react'
 import { useContext } from "react";
-import { UserContext } from "./userContext";
+import { UserContext } from "./UserContext";
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
@@ -36,13 +36,12 @@ const Todos = () => {
     getTodos();
   }, []);
   
-  const deleteTodo = async (e,id) => {
-
-    e.preventDefault()
+  const deleteTodo = async (id) => {
     try {
     const data = await fetch("http://localhost:3004/todos/" + id, {
       headers: {
-        'Accept': 'application/json',
+        "Accept": "application/json",
+        "Content-Type": "application/json",
       },
       method: "DELETE",
     });
@@ -93,7 +92,7 @@ const Todos = () => {
               {idUser == todo.userId ?
                   <>
                       <button onClick={(e) => {navigate("/todos/edit/"+todo.id)}}>📝</button> 
-                      <button onClick={(e) => {deleteTodo(e,todo.id)}}>🗑️</button>
+                      <button onClick={(e) => {deleteTodo(todo.id)}}>🗑️</button>
                   </>
                   : <></>}    
                 
