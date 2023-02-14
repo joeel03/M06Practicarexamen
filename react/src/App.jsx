@@ -7,22 +7,25 @@ import TodosList from './TodosList'
 import TodosAdd from './TodosAdd'
 import Todos from './Todos'
 import TodosEdit from './TodosEdit'
+import { UserContext } from "./userContext";
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  let [userId, setUserId] = useState("");
 
   return (
-    <Routes>
-    <Route path="/" element={<LoginRegister/>} />
+    <UserContext.Provider value={{ userId, setUserId}}>
+      <Routes>
+      <Route path="/" element={<LoginRegister/>} />
 
-    <Route path="/todoslist" element={<TodosList/>} />
-    <Route path="/todosadd" element={<TodosAdd/>} />
-    <Route path="/todos/:id" element={<Todos/>} />
-    <Route path="/todos/edit/:id" element={<TodosEdit/>} />
+      <Route path="/todoslist" element={<TodosList/>} />
+      <Route path="/todosadd" element={<TodosAdd/>} />
+      <Route path="/todos/:id" element={<Todos/>} />
+      <Route path="/todos/edit/:id" element={<TodosEdit/>} />
 
-    </Routes>
-    
+      </Routes>
+    </UserContext.Provider>
+
   )
 }
 

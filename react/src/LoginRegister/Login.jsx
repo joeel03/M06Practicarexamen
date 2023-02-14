@@ -1,8 +1,10 @@
 import React from 'react'
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { UserContext } from '../userContext';
+import { useContext } from 'react';
 const Login = () => {
+  let { userId, setUserId } = useContext(UserContext);
     let [email, setEmail] = useState("");
     let [password, setPassword] = useState("");
     let [error, setError] = useState("");
@@ -19,12 +21,13 @@ const Login = () => {
           method: "GET"
           });
             const resposta = await data.json();
-            console.log(resposta[0].email)
+            console.log(resposta[0])
             if(resposta[0].email==email){
+              setUserId(resposta[0].id)
               navigate("/todoslist")
             }
-        } catch{
-            console.log("Error");
+        } catch(err){
+            console.log(err.message);
             alert("Catchch");
           };
     

@@ -1,13 +1,13 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
+import { useContext } from "react";
+import { UserContext } from "./userContext";
 
 const TodosAdd = () => {
   let [formulari, setFormulari] = useState({});
   let navigate = useNavigate();
-   var data =  
-   {userId: 10, id: 220, title: 'quis ut nam facilis et officia qui', completed: false}
-   ;
+  
 
   let { title, completed,userId=1 } = formulari;
   const formData = new FormData;
@@ -27,14 +27,15 @@ const TodosAdd = () => {
   };
   const handleCreate = async (e) => {
     e.preventDefault();
-    console.log(data)
     try {
-      const data = await fetch("http://localhost:3004/todos/", {
+      const data = await fetch("http://localhost:3004/todos", {
         headers: {
           'Content-Type': 'application/json',
         },
         method: "POST",
-        body: formData
+        body: JSON.stringify({userId:new Number(userId),
+                            title: new String(title),
+                            completed: new Boolean(completed)})
       });
       const resposta = await data.json();
         
