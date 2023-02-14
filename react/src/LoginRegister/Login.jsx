@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from '../UserContext';
 import { useContext } from 'react';
-const Login = () => {
+const Login = ({setLogin}) => {
     let { idUser, setIdUser } = useContext(UserContext);
     let [email, setEmail] = useState("");
     let [password, setPassword] = useState("");
@@ -23,15 +23,17 @@ const Login = () => {
             const resposta = await data.json();
             console.log(resposta[0])
             if(resposta[0].email==email){
-              setIdUser(resposta[0].id)
-              console.log(idUser)
-
-              navigate("/todoslist")
+              if(resposta[0].password==password){
+                setIdUser(resposta[0].id)
+                console.log(idUser)
+                navigate("/todoslist")
+              }else{
+                setError("La contraseña es incorrecta")
+              }
             }
 
         } catch(err){
-            console.log(err.message);
-            alert("Catchch");
+            setError(err.message);
           };
     
         };
